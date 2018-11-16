@@ -36,6 +36,23 @@ class CategoryController extends AbstractController
             ['categories' => $categories]
         );
     }
+
+    /**
+     * @Route("/category/show/{categoryName}")
+     * @param string $categoryName
+     * @return Response
+     */
+    public function showJs(string $categoryName) :Response
+    {
+        $category = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findOneBy(['name'=> $categoryName]);
+        $articles = $this->getDoctrine()
+            ->getRepository(Article::class)
+            ->findBy(['category' => $category->getId()]);
+        return $this->render('showJS.html.twig', ['category' => $category, 'articles' => $articles]);
+    }
+
     /**
      * @Route("/category/{category}", name="category_show")
      * @return Response
@@ -51,29 +68,7 @@ class CategoryController extends AbstractController
         return $this->render('showcategory.html.twig', [
             'articles'=>$articles,
             'category'=>$category,
-            ]);
+        ]);
 
-        /*
-         * Les truc qui vont pas dans ton code :
-         *        - ligne 39 *
-         *        - ligne 45 (nom de la variable) *
-         *        - ligne 46*
-         *        - ligne 47 (Je t'aide parce que la c'est chiant, c'est category qu'il faut mettre et pas category_id après le findBy)*
-         *        - ligne 47 aussi*
-         *        - ligne 49 (Tu return que $category alors que dans l'énoncé demande de renvoyé 1 catégorie et 3 articles donc c'est 2 trucs différents)
-         */
-    }
-
-    /**
-     * @Route("/category/Javascript")
-     * @param Category $category
-     * @return Response
-     */
-    public function showJs(Category $category) :Response
-    {
-        $category = $this->getDoctrine()
-            ->getRepository(Category::class)
-            ->findAll();
-        return $this->render('showJS.html.twig', ['category' => $category]);
     }
 }
