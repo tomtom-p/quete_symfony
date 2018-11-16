@@ -3,10 +3,14 @@
 {% block body %}
     <h1>Liste des articles par catégorie</h1>
     {%  for category in categories %}
-        <h2><a href="/category/{{ category.id }}"> {{ category.name }} </a></h2>
+        <h2><a href="/category/{{ category.name }}"> {{ category.name }} </a></h2>
         {%  for article in category.articles %}
-            <h3>  {{ article.title }} </h3>
+            <h3>  {{ article.title }} : id {{ article.id }}</h3>
             <p>   {{ article.content }} </p>
         {% endfor %}
     {% endfor %}
+
+    <a href="{{ path('homepage') }}">
+        Go to homepage.
+    </a>
 {% endblock %}

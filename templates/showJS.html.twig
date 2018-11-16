@@ -4,7 +4,7 @@
 
     <h1>{{ category.name }}</h1>
 
-    {%  for article in articles %}
+    {%  for article in category.articles %}
         <h3>  {{ article.title }} id: {{ article.id }}</h3>
         <p>   {{ article.content }} </p>
     {% endfor %}
