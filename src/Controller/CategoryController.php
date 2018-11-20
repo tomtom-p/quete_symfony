@@ -40,7 +40,7 @@ class CategoryController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
-            header("Location:/category");
+            header("Location: /category");
 
         }
         return $this->render(
