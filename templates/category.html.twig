@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
     <h1>Liste des articles par catégorie</h1>
-    {%  for category in categories %}
+    {% for category in categories %}
         <h2><a href="/category/{{ category.name }}"> {{ category.name }} </a></h2>
-        {%  for article in category.articles %}
+        {% for article in category.articles %}
             <h3>  {{ article.title }} : id {{ article.id }}</h3>
             <p>   {{ article.content }} </p>
         {% endfor %}
