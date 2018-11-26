@@ -48,7 +48,7 @@ class TagController extends AbstractController
     }
 
     /**
-     * @Route("/{tag}", name="tag_show", methods="GET")
+     * @Route("/{name}", name="tag_show", methods="GET")
      * @param Tag $tag
      * @return Response
      */
